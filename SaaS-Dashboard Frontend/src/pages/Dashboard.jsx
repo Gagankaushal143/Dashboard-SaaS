@@ -4,8 +4,21 @@ import { Card } from "../components/Card"
 import { Navbar } from "../components/Navbar"
 import { ChartSection } from "../components/ChartSection";
 import { Activity } from "../components/Activity";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
+
+  const navigate = useNavigate();
+
+  useEffect(() =>{
+    const token = localStorage.getItem("token");
+
+    if(!token){
+      navigate("/login");
+    }
+  }, [navigate])
+
   return (
     <div>
         <Navbar/>

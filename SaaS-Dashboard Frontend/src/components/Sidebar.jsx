@@ -2,8 +2,16 @@ import { FaHome, FaFile, FaFolder, FaChartBar  } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
 import { CiLogout } from "react-icons/ci";
 import { SiReactivex } from "react-icons/si";
+import { useNavigate } from "react-router-dom";
 
 export const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    navigate("/login")
+  }
+
   return (
     <div className="w-full max-w-64 h-screen sticky top-0 border-r-2 border-gray-700 bg-gray-950 text-white p-4 flex flex-col justify-between">
         <div>
@@ -17,7 +25,7 @@ export const Sidebar = () => {
           </div>
         </div>
         <div className="flex items-center justify-center ">
-            <button className="bg-gray-900 w-full px-2 py-2 rounded-lg flex items-center justify-center gap-2"> <CiLogout />Logout</button>
+            <button onClick={handleLogout} className="bg-gray-900 w-full px-2 py-2 rounded-lg flex items-center justify-center gap-2"> <CiLogout />Logout</button>
         </div>
     </div>
   )
