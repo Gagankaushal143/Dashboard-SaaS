@@ -3,13 +3,18 @@ import { FaGear } from "react-icons/fa6";
 import { CiLogout } from "react-icons/ci";
 import { SiReactivex } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export const Sidebar = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = () =>{
     localStorage.removeItem("token");
-    navigate("/login")
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
+    setLoading(true);
   }
 
   return (
@@ -25,7 +30,10 @@ export const Sidebar = () => {
           </div>
         </div>
         <div className="flex items-center justify-center ">
-            <button onClick={handleLogout} className="bg-gray-900 w-full px-2 py-2 rounded-lg flex items-center justify-center gap-2"> <CiLogout />Logout</button>
+            <button onClick={handleLogout} disabled={loading} className="bg-gray-900 w-full mb-4 px-2 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-800 cursor-pointer hover:scale-103 transition-all duration-300 active:scale-97 disabled:opacity-50 disabled:cursor-not-allowed">
+            <CiLogout /> {loading ? "Logging out" : "Logout" }
+            {loading && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>}
+            </button>
         </div>
     </div>
   )

@@ -18,7 +18,7 @@ export const Login = () => {
         e.preventDefault();
         
         if(email.trim() === "" || password.trim() === ""){
-            return setError("All fields are required")
+            return setError("All fields are required !!")
         }
         
         const data = await loginUser({email, password});

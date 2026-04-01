@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { signupUser } from "../utils/api";
 
 
-
 export const Signup = () => {
 
     const [email, setEmail] = useState("");
@@ -27,23 +26,20 @@ export const Signup = () => {
         if(data){
             setTimeout(() => {
                 navigate("/login");
-            }, 1500);
+            }, 2000);
+            setLoading(true);
         }else{
             alert("Signup failed");
         }
 
-
         setEmail("");
         setName("");
         setPassword("");
-        setLoading(true);
         
     }
 
-
   return (
     <div className="flex h-screen p-12">
-
         <div className="bg-linear-to-br from-blue-500 to-purple-600 flex rounded-2xl">
             {/* Left side  */}
         <div className="w-1/2 flex items-center justify-center bg-white m-4 rounded-2xl">
@@ -58,7 +54,7 @@ export const Signup = () => {
 
                     {/* <p className="text-right text-xs text-gray-700 cursor-pointer hover:text-blue-600">Forgot password?</p> */}
 
-                    <button disable={loading} onClick={handleSignup} className="w-full bg-linear-to-r from-blue-500 to-purple-600 py-2 text-white rounded-lg  transition-all hover:scale-103 duration-300 cursor-pointer flex items-center justify-center gap-2disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button disable={loading} onClick={handleSignup} className="w-full bg-linear-to-r from-blue-500 to-purple-600 py-2 text-white rounded-lg  transition-all hover:scale-103 duration-300 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
 
                         {loading ? "Signing up...": "Signup"}
                         {loading && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>}
