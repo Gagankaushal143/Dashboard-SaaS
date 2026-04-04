@@ -4,36 +4,51 @@ import { Card } from "../components/Card"
 import { Navbar } from "../components/Navbar"
 import { ChartSection } from "../components/ChartSection";
 import { Activity } from "../components/Activity";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getDashboardStats } from "../utils/api";
 
-export const Dashboard = () => {
 
+export const Dashboard = ({ user, setIsOpen }) => {
+
+  const [stats, setStats] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() =>{
+  useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if(!token){
+    if (!token) {
       navigate("/login");
     }
   }, [navigate])
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getDashboardStats();
+      setStats(data);
+    };
+    fetchData();
+  }, []);
+  if (!stats) {
+    return <div className="text-lg h-screen flex items-center justify-center"> Loading...</div>;
+  }
+
   return (
     <div>
-        <Navbar/>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-6">
-            <Card title= "Total Users" value= "1,245" subtitle= "+12% this month" icon={<FaRegUser />}/>
-            <Card title= "Revenue" value= "$12,430" subtitle= "+8% from last week" icon={<MdAttachMoney />}/>
-            <Card title= "Active Project" value= "32" subtitle= "+5 Completed today" icon={<FaRegFolder />}/>
-            {/* <Card title= "Growth" value= "+18%" subtitle= "Compared to last month" /> */}
+      <Navbar user={user} setIsOpen={setIsOpen} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6 px-6">
+        <Card title="Total Users" value={stats?.users} subtitle="+12% this month" icon={<FaRegUser />} />
+        <Card title="Revenue" value={stats?.revenue} subtitle="+8% from last week" icon={<MdAttachMoney />} />
+        <Card title="Active Project" value={stats?.projects} subtitle="+5 Completed today" icon={<FaRegFolder />} />
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6 px-6">
         <div className="col-span-2">
-          <ChartSection />
+          <ChartSection stats={stats} />
         </div>
         <div className="col-span-1">
-          <Activity />
+          <Activity stats={stats} />
         </div>
-        </div>
+      </div>
     </div>
   )
 }
