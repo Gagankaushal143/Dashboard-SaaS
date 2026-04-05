@@ -38,7 +38,7 @@ export const Sidebar = ({ user, isOpen, setIsOpen }) => {
       )}
 
       <div
-        className={`w-full max-w-64 h-screen fixed top-0 left-0 z-50 border-r-2 border-gray-700 bg-gray-950 text-white lg:p-4 flex flex-col justify-between shadow-xl transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        className={`w-full max-w-64 min-h-screen fixed md:sticky top-0 left-0 z-50 border-r-2 border-gray-700 bg-gray-950 text-white lg:p-4 flex flex-col justify-between shadow-xl transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"}
           lg:translate-x-0 lg:static lg:flex lg:p-4`}
       >
         <div>
@@ -100,7 +100,7 @@ export const Sidebar = ({ user, isOpen, setIsOpen }) => {
           <button
             onClick={handleLogout}
             disabled={loading}
-            className="bg-gray-900 w-full mb-20 md:mb-4 px-2 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-800 cursor-pointer hover:scale-103 transition-all duration-300 active:scale-97 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-gray-900 w-full mb-4 px-2 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-800 cursor-pointer hover:scale-103 transition-all duration-300 active:scale-97 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <CiLogout /> {loading ? "Logging out" : "Logout"}
             {loading && (
