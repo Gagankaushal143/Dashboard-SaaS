@@ -100,7 +100,7 @@ export const Sidebar = ({ user, isOpen, setIsOpen }) => {
           <button
             onClick={handleLogout}
             disabled={loading}
-            className="bg-gray-900 w-full mb-4 px-2 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-800 cursor-pointer hover:scale-103 transition-all duration-300 active:scale-97 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-gray-900 w-full mb-20 md:mb-4 px-2 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-800 cursor-pointer hover:scale-103 transition-all duration-300 active:scale-97 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <CiLogout /> {loading ? "Logging out" : "Logout"}
             {loading && (
