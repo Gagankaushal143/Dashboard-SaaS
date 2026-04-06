@@ -34,7 +34,7 @@ export const Dashboard = ({ user, setIsOpen }) => {
   }
 
   return (
-    <div>
+    <div className="">
       <Navbar user={user} setIsOpen={setIsOpen} />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6 px-6">
         <Card title="Total Users" value={stats?.users} subtitle="+12% this month" icon={<FaRegUser />} />

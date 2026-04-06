@@ -18,7 +18,7 @@ export const MainLayout = () => {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row">
+    <div className="flex">
       <Sidebar user={user} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="flex-1">
         <Dashboard user={user} setIsOpen={setIsOpen} />
