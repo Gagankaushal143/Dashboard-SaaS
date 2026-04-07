@@ -1,8 +1,21 @@
 import { FaSearch, FaBell } from "react-icons/fa";
 import { CiMenuFries } from "react-icons/ci";
 import {  motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 export const Navbar = ({ user, setIsOpen }) => {
+
+
+    const location = useLocation();
+
+    const titles = {
+        "/dashboard" : "Dashboard",
+        "/notes" : "Notes",
+        "/projects" : "Projects",
+        "/analytics" : "Analytics",
+        "/settings" : "Settings"
+    }
+    const title = titles[location.pathname] || "Dashboard";
 
     const getInitials = (name) => {
         if (!name) return "";
@@ -17,7 +30,7 @@ export const Navbar = ({ user, setIsOpen }) => {
                     <CiMenuFries />
                 </button>
                 <motion.div initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
-                    Dashboard
+                    {title}
                 </motion.div>
             </div>
             <motion.div initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }} className="md:flex items-center justify-center hidden">
